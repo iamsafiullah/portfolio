@@ -75,7 +75,7 @@ else{
       setMeta('meta[property="og:type"]','content','article');
       if(d.imageUrl) setMeta('meta[property="og:image"]','content',d.imageUrl);
       var link=document.createElement('link');
-      link.rel='canonical'; link.href=location.origin+location.pathname+'?id='+id;
+      link.rel='canonical'; link.href=d.slug?location.origin+'/portfolio/blog/'+d.slug:location.origin+location.pathname+'?id='+id;
       document.head.appendChild(link);
       var ld=document.createElement('script');
       ld.type='application/ld+json';

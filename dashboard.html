@@ -80,6 +80,9 @@ a{color:var(--accent)}
       <div class="field"><label>Focus keyword</label>
         <input type="text" id="focusKw" placeholder="e.g. seo expert abu dhabi" oninput="analyze()"></div>
 
+      <div class="field"><label>URL slug (auto from title, you can edit)</label>
+        <input type="text" id="slug" placeholder="best-services-in-abu-dhabi" oninput="slugTouched=true;analyze()"></div>
+
       <div class="field"><label>Meta title (SEO)</label>
         <input type="text" id="metaTitle" oninput="analyze()">
         <div class="count" id="mtCount"></div></div>
@@ -90,7 +93,7 @@ a{color:var(--accent)}
 
       <label>Google preview</label>
       <div class="serp">
-        <div class="u">iamsafiullah.github.io › portfolio › article</div>
+        <div class="u" id="serpU">iamsafiullah.github.io › portfolio › blog</div>
         <div class="t" id="serpT">Article title</div>
         <div class="d" id="serpD">Meta description will appear here.</div>
       </div>
@@ -143,6 +146,8 @@ firebase.initializeApp(window.FIREBASE_CONFIG);
 var auth=firebase.auth();
 var db=firebase.firestore();
 var imageData='';
+var slugTouched=false;
+var BASE='https://iamsafiullah.github.io/portfolio';
 var editingId=null;
 var cache={};
 
@@ -220,6 +225,8 @@ function analyze(){
   countCls($('mtCount'),mt.length,30,60);
   $('mdCount').textContent=md.length+' / 160 characters';
   countCls($('mdCount'),md.length,120,160);
+  if(!slugTouched && !editingId) $('slug').value=slugify(title);
+  $('serpU').textContent='iamsafiullah.github.io › portfolio › blog › '+(slugify($('slug').value)||'your-article');
   $('serpT').textContent=(mt||title||'Article title').slice(0,65);
   $('serpD').textContent=(md||body.replace(/[#*\[\]\(\)]/g,'').slice(0,160)||'Meta description will appear here.');
 
@@ -277,10 +284,73 @@ function analyze(){
   $('checks').innerHTML=checks.map(function(c){return '<div class="chk"><span class="dot '+(c.st==='bad'?'':c.st)+'"></span><span>'+esc(c.txt)+'</span></div>';}).join('');
 }
 
+/* ---------- Slug + static page file ---------- */
+function slugify(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+function escH(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function inlineH(s){
+  return escH(s)
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)"']+|[\w\-\/\.]+\.html[^\s)"']*)\)/g,'<a href="$2">$1</a>');
+}
+function renderBody(body){
+  var out='',inList=false;
+  String(body).split('\n').forEach(function(line){
+    var t=line.trim();
+    if(t.indexOf('- ')===0){ if(!inList){out+='<ul>';inList=true;} out+='<li>'+inlineH(t.slice(2))+'</li>'; return; }
+    if(inList){out+='</ul>';inList=false;}
+    if(!t) return;
+    if(t.indexOf('### ')===0) out+='<h3>'+inlineH(t.slice(4))+'</h3>';
+    else if(t.indexOf('## ')===0) out+='<h2>'+inlineH(t.slice(3))+'</h2>';
+    else out+='<p>'+inlineH(t)+'</p>';
+  });
+  if(inList) out+='</ul>';
+  return out;
+}
+function downloadPage(id){
+  var d=cache[id]; if(!d) return;
+  var slug=d.slug||slugify(d.title);
+  var url=BASE+'/blog/'+slug;
+  var img=d.imageData||d.imageUrl||'';
+  var mt=(d.metaTitle||d.title)+' | Safi Ullah';
+  var ld=JSON.stringify({
+    '@context':'https://schema.org','@type':'Article',
+    headline:d.title,description:d.metaDesc||'',mainEntityOfPage:url,
+    datePublished:new Date(d.createdAt).toISOString(),
+    dateModified:new Date(d.updatedAt||d.createdAt).toISOString(),
+    author:{'@type':'Person',name:'Safi Ullah'}
+  }).replace(/</g,'\\u003c');
+  var html='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'+
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
+    '<title>'+escH(mt)+'</title>\n'+
+    '<meta name="description" content="'+escH(d.metaDesc)+'">\n'+
+    '<link rel="canonical" href="'+url+'">\n'+
+    '<meta property="og:title" content="'+escH(d.metaTitle||d.title)+'">\n'+
+    '<meta property="og:description" content="'+escH(d.metaDesc)+'">\n'+
+    '<meta property="og:type" content="article">\n'+
+    '<meta property="og:url" content="'+url+'">\n'+
+    (d.imageUrl?'<meta property="og:image" content="'+escH(d.imageUrl)+'">\n':'')+
+    '<script type="application/ld+json">'+ld+'<\/script>\n'+
+    '<style>body{margin:0;font-family:Arial,sans-serif;color:#252b38;line-height:1.8;background:#f7f8fc}'+
+    'header,main,footer{max-width:850px;margin:auto;padding:24px}a{color:#536fae}'+
+    'main{background:#fff;border-radius:12px;margin-top:20px;margin-bottom:30px}'+
+    'h1{font-size:clamp(28px,5vw,42px);line-height:1.3}h2{color:#ff4c60}'+
+    '.date{color:#667085;font-size:14px}.hero{width:100%;height:auto;border-radius:10px}</style>\n'+
+    '</head>\n<body>\n<header><a href="../blog.html">&larr; Back to Blog</a></header>\n<main>\n<article>\n'+
+    '<h1>'+escH(d.title)+'</h1>\n<p class="date">By Safi Ullah | '+new Date(d.createdAt).toLocaleDateString()+'</p>\n'+
+    (img?'<img class="hero" src="'+escH(img)+'" alt="'+escH(d.imageAlt||d.title)+'">\n':'')+
+    renderBody(d.body)+'\n</article>\n</main>\n<footer><a href="../index.html">Return to homepage</a></footer>\n</body>\n</html>\n';
+  var blob=new Blob([html],{type:'text/html'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=slug+'.html';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
 /* ---------- Publish / edit ---------- */
 function resetForm(){
   editingId=null;
-  ['title','focusKw','metaTitle','metaDesc','imageAlt','tags','body'].forEach(function(id){$(id).value='';});
+  ['title','focusKw','slug','metaTitle','metaDesc','imageAlt','tags','body'].forEach(function(id){$(id).value='';});
+  slugTouched=false;
   $('imgFile').value=''; setImage('');
   $('formTitle').textContent='Write a new article';
   $('pubBtn').textContent='Publish Article';
@@ -295,6 +365,7 @@ function publish(){
   if(!title||!body){ msg.textContent='Please enter title and content.'; return; }
   var article={
     title:title,
+    slug:slugify($('slug').value)||slugify(title),
     focusKeyword:$('focusKw').value.trim(),
     metaTitle:$('metaTitle').value.trim()||title,
     metaDesc:$('metaDesc').value.trim()||body.replace(/[#*\[\]\(\)]/g,'').slice(0,160),
@@ -320,6 +391,8 @@ function editArticle(id){
   editingId=id;
   $('title').value=d.title||'';
   $('focusKw').value=d.focusKeyword||'';
+  $('slug').value=d.slug||slugify(d.title);
+  slugTouched=true;
   $('metaTitle').value=d.metaTitle||'';
   $('metaDesc').value=d.metaDesc||'';
   $('imageAlt').value=d.imageAlt||'';
@@ -350,9 +423,11 @@ function loadArticles(){
       h+='<div class="article">';
       if(d.imageData||d.imageUrl) h+='<img class="thumb" src="'+esc(d.imageData||d.imageUrl)+'" alt="">';
       h+='<h4>'+esc(d.title)+'</h4><p class="date">'+new Date(d.createdAt).toLocaleDateString()+(d.focusKeyword?' | Keyword: '+esc(d.focusKeyword):'')+'</p>';
+      h+='<p style="font-size:12px;opacity:.7;margin-bottom:8px">URL: blog/'+esc(d.slug||slugify(d.title))+'</p>';
       h+='<p style="font-size:14px;color:#eee">'+esc(d.body).slice(0,200)+'...</p>';
       h+='<div class="row" style="margin-top:12px"><a href="article.html?id='+doc.id+'" target="_blank">View</a>';
       h+='<button class="secondary small" onclick="editArticle(\''+doc.id+'\')">Edit</button>';
+      h+='<button class="small" onclick="downloadPage(\''+doc.id+'\')">Download page file</button>';
       h+='<button class="danger small" onclick="deleteArticle(\''+doc.id+'\')">Delete</button></div></div>';
     });
     list.innerHTML=h;

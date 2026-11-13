@@ -32,7 +32,8 @@ try{
     snap.forEach(function(doc){
       var d=doc.data();
       var img=d.imageData||d.imageUrl||'';
-      h+='<a class="card" href="article.html?id='+doc.id+'">';
+      var href=d.slug?'blog/'+encodeURIComponent(d.slug):'article.html?id='+doc.id;
+      h+='<a class="card" href="'+href+'">';
       if(img) h+='<img src="'+esc(img)+'" alt="'+esc(d.imageAlt||d.title)+'">';
       h+='<h2>'+esc(d.title)+'</h2><div class="date">'+new Date(d.createdAt).toLocaleDateString()+'</div>';
       h+='<p>'+esc(d.metaDesc||String(d.body).slice(0,160))+'</p></a>';
