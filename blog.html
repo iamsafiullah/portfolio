@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog | Safi Ullah</title>
+<meta name="description" content="SEO, AEO, GEO and digital marketing articles by Safi Ullah.">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<style>
+body{margin:0;font-family:Arial,sans-serif;color:#252b38;line-height:1.7;background:#f7f8fc}
+header,main{max-width:850px;margin:auto;padding:24px}
+a{color:#536fae}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;display:block;text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card h2{margin:0 0 6px;font-size:22px;color:#ff4c60}
+.card .date{font-size:13px;color:#667085}
+.card img{width:100%;border-radius:8px;margin-bottom:12px}
+</style>
+</head>
+<body>
+<header><a href="index.html">&larr; Back to Portfolio</a><h1>Blog</h1></header>
+<main id="list"><p>Loading...</p></main>
+<script>
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+var list=document.getElementById('list');
+try{
+  firebase.initializeApp(window.FIREBASE_CONFIG);
+  firebase.firestore().collection('posts').orderBy('createdAt','desc').get().then(function(snap){
+    if(snap.empty){list.innerHTML='<p>No articles yet.</p>';return;}
+    var h='';
+    snap.forEach(function(doc){
+      var d=doc.data();
+      h+='<a class="card" href="article.html?id='+doc.id+'">';
+      if(d.imageUrl) h+='<img src="'+esc(d.imageUrl)+'" alt="'+esc(d.title)+'">';
+      h+='<h2>'+esc(d.title)+'</h2><div class="date">'+new Date(d.createdAt).toLocaleDateString()+'</div>';
+      h+='<p>'+esc(d.metaDesc||String(d.body).slice(0,160))+'</p></a>';
+    });
+    list.innerHTML=h;
+  }).catch(function(){list.innerHTML='<p>Could not load articles.</p>';});
+}catch(e){list.innerHTML='<p>Could not load articles.</p>';}
+</script>
+</body>
+</html>
