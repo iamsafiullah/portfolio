@@ -100,7 +100,7 @@ function doLogin(){
   var m=document.getElementById('loginMsg');
   m.textContent='';
   auth.signInWithEmailAndPassword(document.getElementById('email').value.trim(),document.getElementById('pwd').value)
-    .catch(function(){ m.textContent='Wrong email or password.'; });
+    .catch(function(err){ m.textContent='Error: '+err.code; });
 }
 function doLogout(){ auth.signOut(); }
 
