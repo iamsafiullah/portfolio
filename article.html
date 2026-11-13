@@ -25,7 +25,11 @@ h2{color:#ff4c60}
 <footer><a href="index.html">Return to homepage</a></footer>
 <script>
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function inline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');}
+function inline(s){
+  return esc(s)
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)"']+|[\w\-\/]+\.html[^\s)"']*)\)/g,'<a href="$2">$1</a>');
+}
 function render(body){
   var out='',inList=false;
   String(body).split('\n').forEach(function(line){
@@ -43,6 +47,16 @@ function render(body){
   if(inList) out+='</ul>';
   return out;
 }
+function setMeta(sel,attr,val){
+  var el=document.querySelector(sel);
+  if(!el){
+    el=document.createElement('meta');
+    var m=sel.match(/\[(\w+(?::\w+)?)="([^"]+)"\]/);
+    el.setAttribute(m[1],m[2]);
+    document.head.appendChild(el);
+  }
+  el.setAttribute(attr,val);
+}
 var box=document.getElementById('post');
 var id=new URLSearchParams(location.search).get('id');
 if(!id){box.innerHTML='<p>Article not found.</p>';}
@@ -52,11 +66,29 @@ else{
     firebase.firestore().collection('posts').doc(id).get().then(function(doc){
       if(!doc.exists){box.innerHTML='<p>Article not found.</p>';return;}
       var d=doc.data();
-      document.title=(d.metaTitle||d.title)+' | Safi Ullah';
-      var md=document.querySelector('meta[name=description]');
-      if(md) md.setAttribute('content',d.metaDesc||'');
+      var img=d.imageData||d.imageUrl||'';
+      var mt=(d.metaTitle||d.title)+' | Safi Ullah';
+      document.title=mt;
+      setMeta('meta[name="description"]','content',d.metaDesc||'');
+      setMeta('meta[property="og:title"]','content',d.metaTitle||d.title);
+      setMeta('meta[property="og:description"]','content',d.metaDesc||'');
+      setMeta('meta[property="og:type"]','content','article');
+      if(d.imageUrl) setMeta('meta[property="og:image"]','content',d.imageUrl);
+      var link=document.createElement('link');
+      link.rel='canonical'; link.href=location.origin+location.pathname+'?id='+id;
+      document.head.appendChild(link);
+      var ld=document.createElement('script');
+      ld.type='application/ld+json';
+      ld.text=JSON.stringify({
+        '@context':'https://schema.org','@type':'Article',
+        headline:d.title,description:d.metaDesc||'',
+        datePublished:new Date(d.createdAt).toISOString(),
+        dateModified:new Date(d.updatedAt||d.createdAt).toISOString(),
+        author:{'@type':'Person',name:'Safi Ullah'}
+      });
+      document.head.appendChild(ld);
       var h='<article><h1>'+esc(d.title)+'</h1><p class="date">By Safi Ullah | '+new Date(d.createdAt).toLocaleDateString()+'</p>';
-      if(d.imageUrl) h+='<img class="hero" src="'+esc(d.imageUrl)+'" alt="'+esc(d.title)+'">';
+      if(img) h+='<img class="hero" src="'+esc(img)+'" alt="'+esc(d.imageAlt||d.title)+'">';
       h+=render(d.body)+'</article>';
       box.innerHTML=h;
     }).catch(function(){box.innerHTML='<p>Could not load article.</p>';});

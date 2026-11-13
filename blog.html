@@ -31,8 +31,9 @@ try{
     var h='';
     snap.forEach(function(doc){
       var d=doc.data();
+      var img=d.imageData||d.imageUrl||'';
       h+='<a class="card" href="article.html?id='+doc.id+'">';
-      if(d.imageUrl) h+='<img src="'+esc(d.imageUrl)+'" alt="'+esc(d.title)+'">';
+      if(img) h+='<img src="'+esc(img)+'" alt="'+esc(d.imageAlt||d.title)+'">';
       h+='<h2>'+esc(d.title)+'</h2><div class="date">'+new Date(d.createdAt).toLocaleDateString()+'</div>';
       h+='<p>'+esc(d.metaDesc||String(d.body).slice(0,160))+'</p></a>';
     });
