@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dashboard - Safi Ullah Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700|Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<style>
+:root{--accent:#ff4c60;--bg:#111;--card:#252525;--line:#333}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;font-size:15px;color:#fff;background:var(--bg);min-height:100vh;padding:20px}
+.container{max-width:900px;margin:0 auto}
+h1,h2,h3{margin:0 0 15px}
+.card{background:var(--card);border-radius:8px;padding:24px;margin-bottom:20px;border:1px solid var(--line)}
+input,textarea{width:100%;border:1px solid #111;background:#1a1a1a;color:#fff;padding:12px 16px;margin-bottom:16px;border-radius:8px;outline:none;font:400 14px 'Open Sans',sans-serif}
+textarea{height:260px;resize:vertical}
+button{cursor:pointer;border:0;border-radius:30px;padding:12px 30px;font:600 14px 'Poppins',sans-serif;text-transform:uppercase;color:#fff;background:var(--accent);transition:.2s}
+button:hover{opacity:.85}
+button.danger{background:#dc3545}
+button.secondary{background:#555}
+.msg{margin-left:12px;opacity:.8;font-size:13px}
+.article{background:var(--card);border-radius:8px;padding:20px;margin-bottom:16px;border:1px solid var(--line)}
+.article h4{color:var(--accent);margin-bottom:6px}
+.article .date{font-size:12px;opacity:.6;margin-bottom:10px}
+.article p{white-space:pre-wrap;line-height:1.7;font-size:14px;color:#eee}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.login-box{max-width:400px;margin:80px auto}
+.hidden{display:none}
+a{color:var(--accent)}
+.status{padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:13px}
+.status.ok{background:#1a3a1a;border:1px solid #2d5a2d}
+.status.err{background:#3a1a1a;border:1px solid #5a2d2d}
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="loginBox" class="login-box card">
+    <h2>Dashboard Login</h2>
+    <p style="opacity:.7;margin-bottom:16px;font-size:13px">Enter password to access the blog dashboard.</p>
+    <input type="password" id="pwd" placeholder="PASSWORD">
+    <button onclick="doLogin()">Login</button>
+    <p id="loginMsg" class="msg"></p>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="row" style="justify-content:space-between;margin-bottom:20px">
+      <h1>Blog Dashboard</h1>
+      <div>
+        <a href="index.html" style="margin-right:15px">View Site</a>
+        <button class="secondary" onclick="doLogout()">Logout</button>
+      </div>
+    </div>
+
+    <div id="statusBox" class="status" style="display:none"></div>
+
+    <div class="card">
+      <h3>Write a new article</h3>
+      <input type="text" id="title" placeholder="ARTICLE TITLE (H1)">
+      <input type="text" id="metaTitle" placeholder="META TITLE (SEO, 50-60 chars)">
+      <textarea id="metaDesc" placeholder="META DESCRIPTION (SEO, 150-160 chars)" style="height:80px"></textarea>
+      <input type="text" id="slug" placeholder="URL SLUG (e.g. seo-tips-abu-dhabi)">
+      <input type="text" id="imageUrl" placeholder="FEATURED IMAGE URL (optional)">
+      <input type="text" id="tags" placeholder="TAGS/KEYWORDS (comma separated)">
+      <textarea id="body" placeholder="WRITE YOUR ARTICLE HERE...\n\n## Heading\n### Subheading\n- Bullet point\n**bold text**"></textarea>
+      <div style="background:#1a1a1a;border-radius:6px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#aaa;line-height:1.6">
+        <b style="color:var(--accent)">Formatting guide (same design as blog):</b><br>
+        <code>## Heading</code> → large heading (coral)<br>
+        <code>### Subheading</code> → smaller heading (white)<br>
+        <code>- Bullet point</code> → bullet list<br>
+        <code>**bold text**</code> → bold text<br>
+        Leave a blank line between paragraphs.
+      </div>
+      <div class="row">
+        <button onclick="publish()">Publish Article</button>
+        <span id="pubMsg" class="msg"></span>
+      </div>
+    </div>
+
+    <h3>Published articles</h3>
+    <div id="articleList"></div>
+  </div>
+</div>
+
+<script>
+function showStatus(text, ok){
+  var b=document.getElementById('statusBox');
+  b.textContent=text;
+  b.className='status '+(ok?'ok':'err');
+  b.style.display='block';
+  setTimeout(function(){ b.style.display='none'; },4000);
+}
+
+function checkConfig(){
+  if(!window.FIREBASE_CONFIG || window.FIREBASE_CONFIG.apiKey === 'YOUR_API_KEY'){
+    return false;
+  }
+  return true;
+}
+
+function initFirebase(){
+  if(typeof firebase === 'undefined'){ showStatus('Firebase SDK not loaded.', false); return false; }
+  if(!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
+  return true;
+}
+
+function doLogin(){
+  var pwd=document.getElementById('pwd').value;
+  if(pwd === window.DASHBOARD_PASSWORD){
+    sessionStorage.setItem('dash_auth','1');
+    document.getElementById('loginBox').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    loadArticles();
+    if(checkConfig() && initFirebase()){
+      showStatus('Firebase connected. Articles sync to cloud for visitors.', true);
+    } else {
+      showStatus('Local mode active: articles save in this browser. (Optional) Set up Firebase in firebase-config.js for visitor visibility.', false);
+    }
+  } else {
+    document.getElementById('loginMsg').textContent='Wrong password.';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('dash_auth');
+  location.reload();
+}
+
+function publish(){
+  var title=document.getElementById('title').value.trim();
+  var body=document.getElementById('body').value.trim();
+  var msg=document.getElementById('pubMsg');
+  if(!title||!body){ if(msg) msg.textContent='Please enter title and content.'; return; }
+  var article = {
+    title: title,
+    metaTitle: document.getElementById('metaTitle').value.trim() || title,
+    metaDesc: document.getElementById('metaDesc').value.trim() || body.slice(0,160),
+    slug: document.getElementById('slug').value.trim() || title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''),
+    imageUrl: document.getElementById('imageUrl').value.trim(),
+    tags: document.getElementById('tags').value.trim(),
+    body: body,
+    createdAt: Date.now()
+  };
+  // Save to localStorage (works immediately, no setup)
+  try {
+    var arr = JSON.parse(localStorage.getItem('safi_blog_articles') || '[]');
+    arr.unshift(article);
+    localStorage.setItem('safi_blog_articles', JSON.stringify(arr));
+  } catch(e){}
+  // Also try Firebase if configured
+  if(checkConfig() && initFirebase()){
+    var db=firebase.firestore();
+    db.collection('posts').add(article).then(function(){
+      if(msg) msg.textContent='Published (saved locally + cloud)!';
+    }).catch(function(err){
+      if(msg) msg.textContent='Saved locally. Cloud error: '+err.message;
+    });
+  } else {
+    if(msg) msg.textContent='Published (saved locally)! Set up Firebase for visitor visibility.';
+  }
+  // Clear form
+  document.getElementById('title').value='';
+  document.getElementById('metaTitle').value='';
+  document.getElementById('metaDesc').value='';
+  document.getElementById('slug').value='';
+  document.getElementById('imageUrl').value='';
+  document.getElementById('tags').value='';
+  document.getElementById('body').value='';
+  loadArticles();
+  setTimeout(function(){ if(msg) msg.textContent=''; },4000);
+}
+
+function deleteArticle(id){
+  if(!confirm('Delete this article?')) return;
+  if(!checkConfig() || !initFirebase()) return;
+  var db=firebase.firestore();
+  db.collection('posts').doc(id).delete().then(function(){ loadArticles(); }).catch(function(err){ alert('Error: '+err.message); });
+}
+
+function deleteLocalArticle(i){
+  if(!confirm('Delete this article?')) return;
+  try {
+    var arr=JSON.parse(localStorage.getItem('safi_blog_articles') || '[]');
+    arr.splice(i,1);
+    localStorage.setItem('safi_blog_articles', JSON.stringify(arr));
+    loadArticles();
+  } catch(e){ alert('Error: '+e.message); }
+}
+function loadArticles(){
+  var list=document.getElementById('articleList');
+  list.innerHTML='<p style="opacity:.6">Loading...</p>';
+  // Load from localStorage
+  var localArr = [];
+  try { localArr = JSON.parse(localStorage.getItem('safi_blog_articles') || '[]'); } catch(e){}
+  if(localArr.length){
+    var html='';
+    localArr.forEach(function(d,i){
+      var date = d.createdAt ? new Date(d.createdAt).toLocaleDateString() : '';
+      html += '<div class="article"><h4>'+escapeHtml(d.title)+'</h4><p class="date">'+date+' (local)</p>';
+      if(d.metaTitle) html += '<p style="font-size:12px;opacity:.7"><b>Meta Title:</b> '+escapeHtml(d.metaTitle)+'</p>';
+      if(d.metaDesc) html += '<p style="font-size:12px;opacity:.7"><b>Meta Desc:</b> '+escapeHtml(d.metaDesc)+'</p>';
+      if(d.imageUrl) html += '<p style="font-size:12px;opacity:.7"><b>Image:</b> '+escapeHtml(d.imageUrl)+'</p>';
+      if(d.tags) html += '<p style="font-size:12px;opacity:.7"><b>Tags:</b> '+escapeHtml(d.tags)+'</p>';
+      html += '<p>'+escapeHtml(d.body).slice(0,200)+'...</p><button class="danger" style="margin-top:12px" onclick="deleteLocalArticle('+i+')">Delete <i class="fa fa-trash"></i></button></div>';
+    });
+    list.innerHTML=html;
+  } else {
+    list.innerHTML='<p style="opacity:.6">No articles yet.</p>';
+  }
+  // Also load from Firebase if configured
+  if(checkConfig() && initFirebase()){
+    var db=firebase.firestore();
+    db.collection('posts').orderBy('createdAt','desc').get().then(function(snap){
+      if(snap.empty){ return; }
+      var html='';
+      snap.forEach(function(doc){
+        var d=doc.data();
+        var date = d.createdAt ? new Date(d.createdAt).toLocaleDateString() : '';
+        html += '<div class="article"><h4>'+escapeHtml(d.title)+'</h4><p class="date">'+date+' (cloud)</p>';
+        if(d.metaTitle) html += '<p style="font-size:12px;opacity:.7"><b>Meta Title:</b> '+escapeHtml(d.metaTitle)+'</p>';
+        if(d.metaDesc) html += '<p style="font-size:12px;opacity:.7"><b>Meta Desc:</b> '+escapeHtml(d.metaDesc)+'</p>';
+        if(d.imageUrl) html += '<p style="font-size:12px;opacity:.7"><b>Image:</b> '+escapeHtml(d.imageUrl)+'</p>';
+        if(d.tags) html += '<p style="font-size:12px;opacity:.7"><b>Tags:</b> '+escapeHtml(d.tags)+'</p>';
+        html += '<p>'+escapeHtml(d.body).slice(0,200)+'...</p><button class="danger" style="margin-top:12px" onclick="deleteArticle(\''+doc.id+'\')">Delete <i class="fa fa-trash"></i></button></div>';
+      });
+      // Append cloud articles to local ones
+      var list=document.getElementById('articleList');
+      list.innerHTML = list.innerHTML + html;
+    }).catch(function(err){
+      // silently fail
+    });
+  }
+}
+
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Auto-login if already authenticated
+if(sessionStorage.getItem('dash_auth')==='1'){
+  document.getElementById('loginBox').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  loadArticles();
+}
+</script>
+</body>
+</html>
