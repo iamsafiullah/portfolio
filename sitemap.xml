@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://safi-portfolio-2026.netlify.app/</loc>
-    <lastmod>2026-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/</loc><lastmod>2026-11-27</lastmod><priority>1.0</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/services/seo-abu-dhabi.html</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/services/google-ads-uae.html</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/services/web-developer-abu-dhabi.html</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/services/technical-seo-audit-uae.html</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/services/geo-aeo-ai-search-uae.html</loc><lastmod>2026-11-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/blog.html</loc><lastmod>2026-11-27</lastmod><priority>0.7</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/blog/seo-aeo-geo-abu-dhabi.html</loc><lastmod>2026-11-27</lastmod><priority>0.6</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/blog/google-business-profile-abu-dhabi.html</loc><lastmod>2026-11-27</lastmod><priority>0.6</priority></url>
+  <url><loc>https://iamsafiullah.github.io/portfolio/blog/google-ads-vs-seo-small-business-uae.html</loc><lastmod>2026-11-27</lastmod><priority>0.6</priority></url>
 </urlset>

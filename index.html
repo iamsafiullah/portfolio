@@ -25,22 +25,19 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Safi Ullah - SEO, GEO & AEO Specialist in Abu Dhabi, UAE">
 <meta property="og:description" content="Freelance SEO & digital marketing consultant in Abu Dhabi. Rank on Google, AI Overviews, ChatGPT & Perplexity.">
-<meta property="og:url" content="https://safiullah.ae/">
-<meta property="og:image" content="https://safiullah.ae/assets/images/safi-profile.png">
+<meta property="og:url" content="https://iamsafiullah.github.io/portfolio/">
+<meta property="og:image" content="https://iamsafiullah.github.io/portfolio/assets/images/safi-profile.png">
 <meta property="og:locale" content="en_AE">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Safi Ullah - SEO, GEO & AEO Specialist Abu Dhabi">
+<meta name="twitter:image" content="https://iamsafiullah.github.io/portfolio/assets/images/safi-profile.png">
 <meta name="twitter:description" content="Freelance SEO & digital marketing consultant in Abu Dhabi, UAE.">
 <!-- Canonical -->
-<link rel="canonical" href="https://safiullah.ae/">
+<link rel="canonical" href="https://iamsafiullah.github.io/portfolio/">
 <meta name="theme-color" content="#111111">
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 <link rel="apple-touch-icon" href="assets/images/favicon.svg">
-<!-- Firebase SDK (for blog) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -90,8 +87,8 @@ img{max-width:100%;display:block}
 .icon-box{position:relative;width:50px;height:50px;margin:20px 0;border-radius:50%;background:#2b2a2a;cursor:pointer;transition:.3s}
 .icon-box i{position:absolute;left:0;right:0;top:15px;text-align:center;color:#ddd;font-size:19px;transition:.3s}
 .icon-box a{display:block;width:50px;height:50px}
-.icon-box h2{position:absolute;z-index:-1;top:0;right:0;opacity:0;height:50px;line-height:50px;padding:0 25px 0 30px;border-radius:30px;background:var(--accent);color:#fff;font-size:15px;font-weight:500;text-transform:uppercase;transition:.3s;white-space:nowrap;pointer-events:none}
-.icon-box:hover h2{opacity:1;right:27px;border-radius:30px 0 0 30px}
+.icon-box .nav-label{position:absolute;z-index:-1;top:0;right:0;opacity:0;height:50px;line-height:50px;padding:0 25px 0 30px;border-radius:30px;background:var(--accent);color:#fff;font-size:15px;font-weight:500;text-transform:uppercase;transition:.3s;white-space:nowrap;pointer-events:none}
+.icon-box:hover .nav-label{opacity:1;right:27px;border-radius:30px 0 0 30px}
 .icon-box.active,.icon-box:hover{background:var(--accent)}
 .icon-box.active i,.icon-box:hover i{color:#fff}
 
@@ -402,8 +399,8 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
   "name": "Safi Ullah",
   "jobTitle": "SEO, GEO & AEO Specialist",
   "description": "Freelance SEO, GEO and AEO specialist in Abu Dhabi, UAE. Digital marketing, PPC and web development services.",
-  "url": "https://safiullah.ae/",
-  "image": "https://safiullah.ae/assets/images/safi-profile.png",
+  "url": "https://iamsafiullah.github.io/portfolio/",
+  "image": "https://iamsafiullah.github.io/portfolio/assets/images/safi-profile.png",
   "email": "mailto:safiorakzai007@gmail.com",
   "telephone": "+971562221544",
   "address": {
@@ -442,14 +439,14 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
 
 <!-- Desktop icon menu -->
 <ul class="icon-menu" id="iconMenu">
-  <li class="icon-box active"><i class="fa fa-home"></i><a href="#home"><h2>Home</h2></a></li>
-  <li class="icon-box"><i class="fa fa-user"></i><a href="#about"><h2>About</h2></a></li>
-  <li class="icon-box"><i class="fa fa-briefcase"></i><a href="#portfolio"><h2>Portfolio</h2></a></li>
-  <li class="icon-box"><i class="fa fa-chart-line"></i><a href="#results"><h2>Results</h2></a></li>
-  <li class="icon-box"><i class="fa fa-tags"></i><a href="#packages"><h2>Packages</h2></a></li>
-  <li class="icon-box"><i class="fa fa-envelope-open"></i><a href="#contact"><h2>Contact</h2></a></li>
-  <li class="icon-box"><i class="fa fa-question-circle"></i><a href="#faq"><h2>FAQ</h2></a></li>
-  <li class="icon-box"><i class="fa fa-pen"></i><a href="#blog"><h2>Blog</h2></a></li>
+  <li class="icon-box active"><i class="fa fa-home"></i><a href="#home"><span class="nav-label">Home</span></a></li>
+  <li class="icon-box"><i class="fa fa-user"></i><a href="#about"><span class="nav-label">About</span></a></li>
+  <li class="icon-box"><i class="fa fa-briefcase"></i><a href="#portfolio"><span class="nav-label">Portfolio</span></a></li>
+  <li class="icon-box"><i class="fa fa-chart-line"></i><a href="#results"><span class="nav-label">Results</span></a></li>
+  <li class="icon-box"><i class="fa fa-tags"></i><a href="#packages"><span class="nav-label">Packages</span></a></li>
+  <li class="icon-box"><i class="fa fa-envelope-open"></i><a href="#contact"><span class="nav-label">Contact</span></a></li>
+  <li class="icon-box"><i class="fa fa-question-circle"></i><a href="#faq"><span class="nav-label">FAQ</span></a></li>
+  <li class="icon-box"><i class="fa fa-pen"></i><a href="#blog"><span class="nav-label">Blog</span></a></li>
 </ul>
 
 <!-- Mobile menu -->
@@ -491,7 +488,7 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
           <div class="col-6"><ul class="about-list os">
             <li><span class="t">first name : </span><span class="v">Safi</span></li>
             <li><span class="t">last name : </span><span class="v">Ullah</span></li>
-            <li><span class="t">Age : </span><span class="v">27 Years</span></li>
+            <li><span class="t">Age : </span><span class="v">29 Years</span></li>
             <li><span class="t">Nationality : </span><span class="v">Pakistani</span></li>
             <li><span class="t">Freelance : </span><span class="v">Available</span></li>
           </ul></div>
@@ -508,7 +505,7 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
       <div class="col-12 col-lg-7" style="margin-top:40px">
         <div class="row">
           <div class="col-6"><div class="stat"><h3>5</h3><p class="os">years of <br>experience</p></div></div>
-          <div class="col-6"><div class="stat"><h3>10</h3><p class="os">projects <br>completed</p></div></div>
+          <div class="col-6"><div class="stat"><h3>13</h3><p class="os">websites built <br>&amp; managed</p></div></div>
           <div class="col-6"><div class="stat"><h3>40</h3><p class="os">organic <br>growth %</p></div></div>
           <div class="col-6"><div class="stat"><h3>50</h3><p class="os">CPA <br>reduced %</p></div></div>
         </div>
@@ -705,27 +702,7 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
         </div>
       </div>
     </div>
-    <h3 class="ctitle" style="margin-top:30px">What clients say</h3>
-    <div class="row">
-      <div class="col-12 col-lg-4"><div class="quote"><i class="fa fa-quote-left"></i>
-        <p>Safi took our clinic's website from page 3 to page 1 for our main services in Abu Dhabi. Calls from Google doubled within 4 months. Clear reporting every month.</p>
-        <div style="display:flex;align-items:center;gap:12px;margin-top:16px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);flex-shrink:0">MA</div>
-          <div><h6 style="margin:0;font-size:14px">Mohammed Al Kaabi</h6><small class="os">Owner, Abu Dhabi Dental Clinic · <a href="https://linkedin.com" target="_blank" style="color:var(--accent)">LinkedIn</a></small></div>
-        </div></div></div>
-      <div class="col-12 col-lg-4"><div class="quote"><i class="fa fa-quote-left"></i>
-        <p>Our online store's organic traffic grew 3x after Safi's SEO work. He fixed technical issues we didn't even know existed and set up proper tracking. Highly recommended.</p>
-        <div style="display:flex;align-items:center;gap:12px;margin-top:16px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);flex-shrink:0">SR</div>
-          <div><h6 style="margin:0;font-size:14px">Sara Rahman</h6><small class="os">Founder, UAE E-Commerce Store · <a href="https://linkedin.com" target="_blank" style="color:var(--accent)">LinkedIn</a></small></div>
-        </div></div></div>
-      <div class="col-12 col-lg-4"><div class="quote"><i class="fa fa-quote-left"></i>
-        <p>Safi managed our Google Ads and cut our cost per lead by almost half while keeping lead quality high. Weekly reports made everything transparent.</p>
-        <div style="display:flex;align-items:center;gap:12px;margin-top:16px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);flex-shrink:0">AK</div>
-          <div><h6 style="margin:0;font-size:14px">Abdullah Khan</h6><small class="os">Marketing Lead, Real Estate Agency · <a href="https://linkedin.com" target="_blank" style="color:var(--accent)">LinkedIn</a></small></div>
-        </div></div></div>
-    </div>
+    <!-- Client testimonials removed until each one is confirmed real and approved by the client. Restore from git history (branch main) when verified. -->
   </div></div>
 </section>
 
@@ -780,6 +757,14 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
         </div>
       </div>
     </div>
+    <h3 class="ctitle" style="margin-top:40px">Service details</h3>
+    <ul class="os" style="line-height:2.2;font-weight:400">
+      <li><a style="color:var(--accent)" href="services/seo-abu-dhabi.html">SEO Services in Abu Dhabi</a></li>
+      <li><a style="color:var(--accent)" href="services/google-ads-uae.html">Google Ads Management UAE</a></li>
+      <li><a style="color:var(--accent)" href="services/web-developer-abu-dhabi.html">Web Developer in Abu Dhabi</a></li>
+      <li><a style="color:var(--accent)" href="services/technical-seo-audit-uae.html">Technical SEO Audit UAE</a></li>
+      <li><a style="color:var(--accent)" href="services/geo-aeo-ai-search-uae.html">GEO and AEO (AI Search) UAE</a></li>
+    </ul>
   </div></div>
 </section>
 
@@ -827,6 +812,7 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
         <div class="cspan os"><i class="fa fa-envelope-open"></i><span>mail me</span>safiorakzai007@gmail.com</div>
         <div class="cspan os"><i class="fa fa-phone-square"></i><span>call me</span>+971 56 222 1544</div>
         <div class="cspan os"><i class="fa fa-location-dot"></i><span>location</span>Abu Dhabi, UAE</div>
+        <a class="btn sm" style="margin:10px 0 20px" target="_blank" rel="noopener" href="https://wa.me/971562221544?text=Hi%20Safi%2C%20I%20found%20your%20portfolio%20and%20need%20help%20with%20SEO.">Chat on WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
         <div class="social">
           <a title="LinkedIn" target="_blank" href="https://linkedin.com/in/safi-ullah-wpdeveloper"><i class="fa-brands fa-linkedin-in"></i></a>
           <a title="WhatsApp" target="_blank" href="https://wa.me/971562221544"><i class="fa-brands fa-whatsapp"></i></a>
@@ -855,28 +841,14 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
     <div class="title-wrap"><div class="title-bg">blog</div><h2>my blog</h2></div>
     <p class="os" style="margin-bottom:30px;opacity:.85">SEO, GEO &amp; AEO articles. Insights on ranking on Google, AI Overviews, ChatGPT, Perplexity and voice search.</p>
 
-    <!-- Featured article -->
-    <div id="featuredPost"></div>
-
-    <!-- Articles list -->
-    <h3 class="ctitle" style="padding-bottom:16px;margin-top:30px">All articles</h3>
-    <div id="blogList"><p class="os" style="opacity:.6">Loading articles...</p></div>
-
+    <div class="row">
+      <div class="col-12 col-lg-4"><a class="case" style="display:block;height:auto" href="blog/seo-aeo-geo-abu-dhabi.html"><div class="role os">Article</div><h3 style="font-size:18px;margin-bottom:10px">SEO, AEO and GEO in Abu Dhabi: A Practical Guide</h3><p class="os" style="font-weight:400;opacity:.85">What each one means, how they fit together, and what Abu Dhabi businesses should do first.</p></a></div>
+      <div class="col-12 col-lg-4"><a class="case" style="display:block;height:auto" href="blog/google-business-profile-abu-dhabi.html"><div class="role os">Article</div><h3 style="font-size:18px;margin-bottom:10px">Google Business Profile for Abu Dhabi Businesses: Local SEO Checklist</h3><p class="os" style="font-weight:400;opacity:.85">Set up and improve your Google Business Profile to get found on Google Maps.</p></a></div>
+      <div class="col-12 col-lg-4"><a class="case" style="display:block;height:auto" href="blog/google-ads-vs-seo-small-business-uae.html"><div class="role os">Article</div><h3 style="font-size:18px;margin-bottom:10px">Google Ads vs SEO: Which Should a UAE Small Business Choose?</h3><p class="os" style="font-weight:400;opacity:.85">Paid ads are fast. SEO compounds. How to pick, or combine both.</p></a></div>
+    </div>
+    <p class="os" style="margin-top:24px"><a class="btn sm" href="blog.html">All articles <i class="fa fa-arrow-right"></i></a></p>
   </div></div>
 </section>
-
-<!-- Article Reader Modal -->
-<div id="articleModal" style="position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.92);display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(4px)">
-  <div style="background:#1a1a1a;border-radius:12px;padding:0;max-width:820px;width:100%;max-height:92vh;overflow-y:auto;position:relative;margin:20px auto;border:1px solid #333">
-    <button onclick="closeArticle()" style="position:sticky;top:15px;float:right;margin:15px 15px 0 0;width:40px;height:40px;border-radius:50%;background:#2b2a2a;border:0;color:#fff;font-size:20px;cursor:pointer;z-index:10">&times;</button>
-    <img id="artImg" src="" alt="" style="width:100%;max-height:400px;object-fit:cover;border-radius:12px 12px 0 0;display:none">
-    <div style="padding:30px" class="article-content">
-      <h2 id="artTitle" style="color:#fff;margin-bottom:10px;font-size:26px;line-height:1.3"></h2>
-      <p id="artMeta" class="os" style="font-size:12px;opacity:.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #333"></p>
-      <div id="artBody" class="article-body"></div>
-    </div>
-  </div>
-</div>
 
 <!-- Lightbox -->
 <div id="lb">
@@ -943,7 +915,7 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
       if(p.id===id){p.classList.remove('anim');void p.offsetWidth;p.classList.add('anim')}
     });
     document.getElementById(id).scrollTop=0;
-    if(id==='blog' && typeof loadBlogPosts==='function') loadBlogPosts();
+    
     [].forEach.call(document.querySelectorAll('#iconMenu .icon-box'),function(li){
       li.classList.toggle('active',li.querySelector('a').getAttribute('href')==='#'+id)});
     [].forEach.call(mm.querySelectorAll('li'),function(li){
@@ -994,184 +966,6 @@ body::after{width:360px;height:360px;background:#7c3aed;bottom:-100px;right:-100
     location.href='mailto:safiorakzai007@gmail.com?subject='+encodeURIComponent(f.subject.value)+'&body='+encodeURIComponent(body);
   });
 
-  // Blog: fetch articles from Firestore
-  function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function stripHtml(s){ return String(s).replace(/<[^>]*>/g,''); }
-  function renderBlogPosts(posts){
-    var list=document.getElementById('blogList');
-    var featured=document.getElementById('featuredPost');
-    if(!list) return;
-    if(!posts || !posts.length){ list.innerHTML='<p class="os" style="opacity:.6">No articles yet. Publish one from the Dashboard.</p>'; if(featured) featured.innerHTML=''; return; }
-    window._blogPosts = posts;
-    // Featured post (first one, with large image)
-    if(featured){
-      var fp = posts[0];
-      var fd = fp.createdAt ? new Date(fp.createdAt).toLocaleDateString() : '';
-      var fhtml = '<div style="background:#252525;border-radius:12px;overflow:hidden;margin-bottom:30px;cursor:pointer;transition:transform .3s" onmouseover="this.style.transform=\'translateY(-4px)\'" onmouseout="this.style.transform=\'none\'" onclick="openArticle(0)">';
-      if(fp.imageUrl) fhtml += '<img src="'+escapeHtml(fp.imageUrl)+'" alt="'+escapeHtml(fp.title)+'" style="width:100%;max-height:400px;object-fit:cover">';
-      fhtml += '<div style="padding:28px">';
-      fhtml += '<span style="display:inline-block;background:var(--accent);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;text-transform:uppercase;margin-bottom:12px">Featured</span>';
-      fhtml += '<h3 style="font-size:24px;margin-bottom:10px;color:#fff;line-height:1.3">'+escapeHtml(fp.title)+'</h3>';
-      fhtml += '<p class="os" style="font-size:12px;opacity:.6;margin-bottom:14px">'+fd+(fp.tags?' · '+escapeHtml(fp.tags):'')+'</p>';
-      var fpPlain = stripHtml(fp.body);
-      fhtml += '<p class="os" style="white-space:pre-wrap;line-height:1.7;font-size:14px;color:#ddd">'+escapeHtml(fpPlain).slice(0,300)+(fpPlain.length>300?'...':'')+'</p>';
-      fhtml += '<p style="margin-top:14px;color:var(--accent);font-size:14px;font-weight:600">Read full article →</p>';
-      fhtml += '</div></div>';
-      featured.innerHTML = fhtml;
-    }
-    // Rest of articles (skip first if featured shown)
-    var rest = posts.length > 1 ? posts.slice(1) : [];
-    if(rest.length){
-      list.innerHTML = rest.map(function(p,i){
-        var d = p.createdAt ? new Date(p.createdAt).toLocaleDateString() : '';
-        var idx = i + 1;
-        var html = '<div style="background:#252525;border-radius:8px;padding:20px;margin-bottom:16px;display:flex;gap:16px;cursor:pointer;transition:transform .2s;align-items:flex-start" onmouseover="this.style.transform=\'translateY(-3px)\'" onmouseout="this.style.transform=\'none\'" onclick="openArticle('+idx+')">';
-        if(p.imageUrl) html += '<img src="'+escapeHtml(p.imageUrl)+'" alt="'+escapeHtml(p.title)+'" style="width:120px;height:90px;border-radius:6px;object-fit:cover;flex-shrink:0">';
-        html += '<div style="flex:1">';
-        html += '<h4 style="margin-bottom:6px;color:var(--accent);font-size:16px;line-height:1.3">'+escapeHtml(p.title)+'</h4>';
-        html += '<p class="os" style="font-size:11px;opacity:.6;margin-bottom:8px">'+d+(p.tags?' · '+escapeHtml(p.tags):'')+'</p>';
-        var pPlain = stripHtml(p.body);
-        html += '<p class="os" style="white-space:pre-wrap;line-height:1.6;font-size:13px;color:#ccc">'+escapeHtml(pPlain).slice(0,150)+(pPlain.length>150?'...':'')+'</p>';
-        html += '</div></div>';
-        return html;
-      }).join('');
-    } else {
-      list.innerHTML = '<p class="os" style="opacity:.6">No more articles yet.</p>';
-    }
-    // Update page meta for SEO (dynamic, for the latest post)
-    if(posts[0]){
-      document.title = posts[0].metaTitle || posts[0].title;
-      var md = document.querySelector('meta[name="description"]');
-      if(md && posts[0].metaDesc) md.setAttribute('content', posts[0].metaDesc);
-    }
-    // Inject Article schema for AEO
-    var existingSchema = document.getElementById('blogArticleSchema');
-    if(existingSchema) existingSchema.remove();
-    if(posts.length){
-      var p = posts[0];
-      var script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.id = 'blogArticleSchema';
-      script.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": p.metaTitle || p.title,
-        "description": p.metaDesc || p.body.slice(0,160),
-        "image": p.imageUrl || "https://safi-ullah.netlify.app/assets/images/safi-profile.png",
-        "author": { "@type": "Person", "name": "Safi Ullah" },
-        "publisher": { "@type": "Person", "name": "Safi Ullah" },
-        "datePublished": new Date(p.createdAt).toISOString(),
-        "dateModified": new Date(p.createdAt).toISOString(),
-        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://safi-ullah.netlify.app/#blog" },
-        "keywords": p.tags || "SEO, GEO, AEO, Abu Dhabi"
-      });
-      document.head.appendChild(script);
-    }
-  }
-  // Seed article (published by default)
-  var SEED_ARTICLE = {
-    title: "Freelance SEO Consultant in Abu Dhabi: How to Rank on Google, AI Overviews & AI Mode (October 2026 Guide)",
-    metaTitle: "Freelance SEO Consultant Abu Dhabi | AI Search Guide 2026",
-    metaDesc: "Freelance SEO, GEO and AEO consultant in Abu Dhabi explains October 2026 Google updates, AI Mode links and low-competition keywords.",
-    slug: "freelance-seo-consultant-abu-dhabi-ai-search-2026",
-    imageUrl: "assets/images/abu-dhabi-seo-guide.webp",
-    tags: "SEO, GEO, AEO, Abu Dhabi, AI Search",
-    body: "## Quick answer\nTo win customers from search in Abu Dhabi in late 2026, your business has to be findable in two places: Google's classic results and the AI answers that now sit above them. Google's own May 2026 guide says that optimizing for AI search is still SEO at its core. The fundamentals stay, but the way you write, measure and report has changed.\n\nI am Safi Ullah, a freelance SEO, GEO and AEO consultant in Abu Dhabi. This guide covers what changed in Google Search this month, how SEO, AEO and GEO fit together, which Abu Dhabi keywords are less crowded, and a plan you can start this week.\n\n### Key takeaways\n- No October core update so far: the latest confirmed ranking update is the September 2026 spam update, which ran from 24 September to 8 October.\n- Links move up in AI answers: on 15 October Google said AI Mode and AI Overviews will show more inline links, placed higher in the response.\n- AI content needs a human check: on 1 October Google called hand fact-checking of AI output critical and described fabricated author profiles as deception.\n- Abu Dhabi niche searches are thin: results for freelance SEO consultant Abu Dhabi are mostly job boards and classifieds, which leaves room for a real expert page.\n\n## What changed in Google Search in October 2026\nGoogle made no confirmed ranking update in October after the September spam update finished on 8 October. The real changes this month are about AI answers, content guidance and measurement.\n\n15 Oct - AI Mode and AI Overviews links update: more inline links, placed higher, plus a test of a top box with one or two task links. Your title and opening lines can earn clicks from inside AI answers.\n15 Oct - News carousels with Preferred Sources roll out to more locations and languages; Preferred Sources use is up more than 7x this year. Encourage readers to add your site as a preferred source if you publish timely content.\n13 Oct - Bing Webmaster Tools added a Topics Portfolio to its AI reports. Worth a look if you already use Bing's AI reporting.\n10-11 Oct - Search Console Performance report lagged about 60 hours and was normal again by 12 Oct. Thin data right after the spam update may be a reporting delay, not a drop.\n8 Oct - September 2026 spam update completed after 13 days 16 hours, the longest of 2026 and the fourth spam update this year. Review pages for thin, scaled or low-value content before the next one.\n2 Oct - Google shared timing for crawling, indexing and recovery: 3 to 6 months after a core update. Do not judge a fix after two weeks.\n1 Oct - Google refreshed its generative AI content and people-first guidance: hand fact-checking is critical, and fake author profiles count as deception. Use a real, named author and edit every AI draft by hand.\nFrom 20 Sep - Nozzle reports Google served some wrong results pages to automated requests, running at 5-11% a day since 1 Oct. Some rank-tracker movement may not be real. Cross-check with Search Console.\n\n## SEO, AEO and GEO: one practice, three goals\nGoogle's first official guide to generative AI search, published on 15 May 2026, accepts that people say AEO and GEO. Its position is that the work underneath is still SEO. I treat them as layers of the same job.\n\nSEO: Rank and earn the click. Shows up in Google and Bing results. Fast, crawlable, helpful pages; local signals; links.\nAEO: Be the direct answer. Shows up in featured snippets, People Also Ask, AI Overviews, voice. Question headings with a short, direct answer underneath.\nGEO: Be cited or recommended inside generated answers. Shows up in ChatGPT, Perplexity, Gemini, Claude, AI Overviews. Original data, quotes, brand mentions, fresh content, open crawler access.\n\n### Two points are easy to get wrong\nFirst, structured data is not a shortcut. Google's May 2026 guide says it is not required for AI Overviews or AI Mode, Google deprecated FAQ rich results on 7 May 2026, and a May 2026 study found JSON-LD did not measurably raise citations for pages already visible in AI Overviews. I still add schema for clarity, but I do not sell it as a citation trick.\nSecond, evidence helps. The Princeton GEO study found that adding statistics lifted AI visibility by up to 40%, and adding citations and quotations by up to 41%. Original numbers and named sources are the cheapest GEO upgrade you can make.\n\n## Low-competition keywords for Abu Dhabi\nThe broad phrase digital marketing services Abu Dhabi is crowded with agency location pages. A smaller business wins faster by picking narrower phrases where the results are weak, then proving expertise on the page.\n\nfreelance SEO consultant Abu Dhabi: Job boards, Upwork, classifieds and thin directory listings; few real expert pages. Primary keyword for a consultant page.\ngenerative engine optimization Abu Dhabi: Only a handful of dedicated Abu Dhabi pages, mostly agency location pages. Supporting keyword in a heading and the FAQ.\nanswer engine optimization Abu Dhabi: Most AEO lists and guides target Dubai, not Abu Dhabi. Supporting keyword, paired with local examples.\nGEO specialist Abu Dhabi: Results drift to geology and GIS jobs because geo is ambiguous. Avoid the abbreviation; spell out the full term.\ndigital marketing services Abu Dhabi: Dominated by established agencies with templated service pages. Avoid as a primary target; use it only as a secondary mention.\n\nTwo habits make this work. Search the phrase yourself before you write, and ask whether the top results truly answer the question. Then use one primary keyword per page and let the supporting phrases appear naturally in headings and answers, in English and in Arabic if your customers search in both.\n\n## A seven-step plan for Abu Dhabi businesses\n1. Choose one primary keyword per page. Check the live results first. If the top pages are job boards or thin listings, a strong expert page can compete.\n2. Write answer-first. Put the direct answer in the first one or two sentences under each question heading, then add detail. This helps featured snippets and AI answers alike.\n3. Show a real author with real results. Google's 1 October guidance treats fake author profiles as deception. Add a named author, a short bio and proof.\n4. Edit every AI draft by hand. Check facts, remove filler and add first-hand detail. Scaled, templated pages are exactly what spam updates punish.\n5. Add original numbers and named sources. Local data, your own client results and short expert quotes give AI systems something worth citing.\n6. Strengthen your Abu Dhabi signals. Complete your Google Business Profile, keep your name, address and phone consistent, collect genuine reviews, and publish Arabic pages if customers search in Arabic.\n7. Refresh key pages every quarter. Pages not updated quarterly were three times more likely to lose AI citations. Also check that your robots.txt does not block the crawlers you want citations from.\n\n## How to measure results when clicks fall\nVisibility and clicks no longer move together. Ahrefs' 2026 update found that the top-ranking page's click-through rate was 58% lower when an AI Overview appeared above it. So report on leads, calls and WhatsApp enquiries, not sessions alone.\n\nSearch Console AI report: introduced on 3 June 2026 and available to all sites since 31 August. It counts impressions only, so save a baseline now.\nRank trackers: treat sudden swings with caution, given the wrong-results issue Nozzle reported. Confirm in Search Console.\nGemini referrals: Google added UTM parameters to outgoing Gemini links, so GA4 can attribute that traffic more accurately.\nMonthly prompt audit: run your top 20 commercial prompts in ChatGPT, Perplexity, Gemini and Google, and log whether you appear.\nPatience: Google says recovery after a core update can take 3 to 6 months, so give changes time before you judge them.\n\n## Results from UAE projects\nThese methods come from client work in the UAE. Every number below is from the reports on my results page, and results vary by site and market.\n\nTasreea Business Center (virtual office and business setup): Technical audit, on-page work, schema, Core Web Vitals, AI-search optimization, link building. Result: 437 clicks, 37.7K impressions, 13.7 average position, 18 page-1 keywords, 6.37K AI search impressions, 666 backlinks.\n247 Uniforms (corporate uniforms): Rebuilt product pages, metadata and schema; GEO and AEO work; Google Shopping and Meta campaigns. Result: 40% organic traffic growth in the first month, 25% ROAS improvement.\nHolly Holistic (wellness brand): Redesigned the Meta Ads funnel, product-page SEO, GA4 conversion tracking. Result: 50% lower CPA on Meta Ads, 30% organic traffic growth.\n\n## Frequently asked questions\nIs there a Google core update in October 2026? Not as of the latest reports I found in late October. The last confirmed core update began in May 2026, and the most recent confirmed update is the September 2026 spam update, which finished on 8 October. Check Google's Search Status Dashboard for new entries.\nWhat is the difference between SEO, AEO and GEO? SEO earns rankings and clicks. AEO structures content so it can be the direct answer in snippets, People Also Ask and AI Overviews. GEO aims to get your brand cited inside answers from tools like ChatGPT, Perplexity, Gemini and Claude.\nHow long does SEO take in Abu Dhabi? Most sites with limited authority start seeing meaningful organic traffic after about three to six months of consistent work. Competition, site condition and content quality change that range.\nDo I need schema markup to appear in AI Overviews? No. Google's May 2026 guide says structured data is not required for AI Overviews or AI Mode. Schema still helps search engines understand a page, so it remains good practice.\nCan I use AI to write my blog posts? Yes, but Google's 1 October guidance says to fact-check AI output by hand before publishing. Add a real author, first-hand detail and original data so the page is not a generic copy.\nShould I publish Arabic pages as well as English ones? If your customers search in both languages, yes. Abu Dhabi searchers mix Arabic and English, so a bilingual approach captures demand that English-only pages miss.\n\n## Work with an Abu Dhabi SEO, GEO and AEO consultant\nIf you want a clear plan for ranking on Google and in AI answers, send me your website and your top three services. I will review it and tell you where the quickest wins are. Reach me through the contact section or on WhatsApp, and browse more guides in the blog.",
-    createdAt: Date.now()
-  };
-  // Seed localStorage with the article if empty, or update imageUrl if missing
-  try {
-    var existing = JSON.parse(localStorage.getItem('safi_blog_articles') || '[]');
-    if(!existing.length){
-      var a2 = { title: "How to Get Your Business on Google Maps (Local SEO) in Abu Dhabi", metaTitle: "Local SEO Abu Dhabi | Google Maps Ranking", metaDesc: "Simple steps to rank your business on Google Maps in Abu Dhabi and get more calls from nearby customers.", slug: "local-seo-google-maps-abu-dhabi", imageUrl: "assets/images/digital-marketing-services-musaffah.webp", tags: "Local SEO, Google Maps, Abu Dhabi", body: "## Quick answer\\nIf your business is not on Google Maps, you are losing customers who search \\\"near me\\\". Setting up and optimizing your Google Business Profile is the fastest way to get found locally.\\n\\n### Key takeaways\\n- Claim and verify your Google Business Profile.\\n- Add correct name, address, phone and hours.\\n- Collect genuine reviews from real customers.\\n- Post photos weekly.\\n\\n## Step by step\\n1. Go to business.google.com and claim your listing.\\n2. Fill every field: category, services, photos.\\n3. Ask happy customers for a review with a short link.\\n4. Reply to every review, good or bad.\\n\\nLocal SEO is not complicated. Do the basics well and you will outrank competitors who ignore their profile.", createdAt: Date.now() - 86400000 };
-      var a3 = { title: "Google Ads vs SEO: Which Should a Small Business Choose?", metaTitle: "Google Ads vs SEO for Small Business UAE", metaDesc: "Paid ads give quick results, SEO builds long-term traffic. Learn which fits your budget and goals.", slug: "google-ads-vs-seo-small-business-uae", imageUrl: "assets/images/abu-dhabi-seo-guide.webp", tags: "Google Ads, SEO, Small Business", body: "## Quick answer\\nIf you need customers this week, run Google Ads. If you want steady traffic for years, invest in SEO. Most small businesses benefit from both.\\n\\n### When to choose Google Ads\\n- New business with no traffic yet.\\n- Seasonal offers or launches.\\n- High-competition keywords.\\n\\n### When to choose SEO\\n- Limited monthly budget.\\n- Long-term growth plan.\\n- Local services with repeat customers.\\n\\n## Simple plan\\nStart with a small Google Ads budget to get leads now, and run SEO in parallel so your cost per lead drops over time.", createdAt: Date.now() - 172800000 };
-      localStorage.setItem('safi_blog_articles', JSON.stringify([SEED_ARTICLE, a2, a3]));
-    } else if(existing[0] && existing[0].title === SEED_ARTICLE.title){
-      if(!existing[0].imageUrl) existing[0].imageUrl = SEED_ARTICLE.imageUrl;
-      if(existing[0].body && existing[0].body.indexOf('##') === -1) existing[0].body = SEED_ARTICLE.body;
-      localStorage.setItem('safi_blog_articles', JSON.stringify(existing));
-    }
-  } catch(e){}
-  function loadBlogPosts(){
-    var list=document.getElementById('blogList');
-    if(!list) return;
-    // Try localStorage first (works immediately, no setup)
-    var localPosts = [];
-    try { localPosts = JSON.parse(localStorage.getItem('safi_blog_articles') || '[]'); } catch(e){}
-    if(localPosts.length){
-      renderBlogPosts(localPosts);
-    } else {
-      list.innerHTML='<p class="os" style="opacity:.6">No articles yet. Publish one from the Dashboard.</p>';
-    }
-    // Also try Firebase if configured (for cross-device sync)
-    if(typeof firebase !== 'undefined' && window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey !== 'YOUR_API_KEY'){
-      try {
-        if(!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
-        var db = firebase.firestore();
-        db.collection('posts').orderBy('createdAt','desc').onSnapshot(function(snap){
-          var posts = [];
-          snap.forEach(function(doc){ var d=doc.data(); d.id=doc.id; posts.push(d); });
-          if(posts.length) renderBlogPosts(posts);
-        }, function(err){ /* silently fail, localStorage already shown */ });
-      } catch(e){ /* silently fail */ }
-    }
-  }
-  // Format article body: supports ## headings, ### subheadings, - bullets, **bold**
-  function formatArticleBody(text){
-    if(!text) return '';
-    // If already HTML, return as-is (sanitized basic)
-    if(/<[a-z][\s\S]*>/i.test(text)) return text;
-    var lines = text.split('\n');
-    var html = '';
-    var inList = false;
-    lines.forEach(function(line){
-      var t = line.trim();
-      if(!t){ if(inList){ html+='</ul>'; inList=false; } html += '<br>'; return; }
-      if(t.startsWith('## ')){ if(inList){ html+='</ul>'; inList=false; } html += '<h2>'+escapeHtml(t.slice(3))+'</h2>'; return; }
-      if(t.startsWith('### ')){ if(inList){ html+='</ul>'; inList=false; } html += '<h3>'+escapeHtml(t.slice(4))+'</h3>'; return; }
-      if(t.startsWith('- ') || t.startsWith('• ')){ if(!inList){ html+='<ul>'; inList=true; } html += '<li>'+escapeHtml(t.slice(2)).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</li>'; return; }
-      if(inList){ html+='</ul>'; inList=false; }
-      html += '<p>'+escapeHtml(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</p>';
-    });
-    if(inList) html+='</ul>';
-    return html;
-  }
-  // Article reader
-  window.openArticle = function(i){
-    var posts = window._blogPosts || [];
-    var p = posts[i];
-    if(!p) return;
-    document.getElementById('artTitle').textContent = p.title;
-    var d = p.createdAt ? new Date(p.createdAt).toLocaleDateString() : '';
-    document.getElementById('artMeta').textContent = d + (p.tags ? ' · ' + p.tags : '') + (p.metaDesc ? ' · ' + p.metaDesc : '');
-    var img = document.getElementById('artImg');
-    if(p.imageUrl){ img.src = p.imageUrl; img.alt = p.title; img.style.display = 'block'; }
-    else { img.style.display = 'none'; }
-    document.getElementById('artBody').innerHTML = formatArticleBody(p.body);
-    document.getElementById('articleModal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  };
-  window.closeArticle = function(){
-    document.getElementById('articleModal').style.display = 'none';
-    document.body.style.overflow = '';
-  };
-  // close on backdrop click
-  document.getElementById('articleModal').addEventListener('click', function(e){
-    if(e.target === this) closeArticle();
-  });
-  // Expose loadBlogPosts globally
-  window.loadBlogPosts = loadBlogPosts;
-  // Load posts when blog page becomes active
-  var _origShow = window.show;
-  // Hook into navigation: load posts when #blog is shown
-  document.addEventListener('click', function(e){
-    var a = e.target.closest('a[href="#blog"]');
-    if(a){ setTimeout(loadBlogPosts, 100); }
-  });
-  // Initial load if blog is active
-  if(document.getElementById('blog') && document.getElementById('blog').classList.contains('active')){
-    loadBlogPosts();
-  }
 })();
 </script>
 </body>

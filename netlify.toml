@@ -13,3 +13,9 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+# The primary address is https://iamsafiullah.github.io/portfolio/ . Redirect this Netlify copy there so only one version is indexed.
+[[redirects]]
+  from = "/*"
+  to = "https://iamsafiullah.github.io/portfolio/:splat"
+  status = 301
+  force = true
