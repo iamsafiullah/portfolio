@@ -17,4 +17,10 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://safi-ullah.netlify.app/sitemap.xml
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://iamsafiullah.github.io/portfolio/sitemap.xml

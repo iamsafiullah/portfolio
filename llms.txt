@@ -28,8 +28,16 @@ Abu Dhabi, United Arab Emirates (service area: UAE, Qatar, Pakistan)
 - 437 clicks, 37.7K impressions for Tasreea Business Center
 - 40% organic traffic growth in first month for 247 Uniforms
 - 50% CPA reduction for Holly Holistic
-- 5+ years experience, 500+ businesses served
-- 95% SEO proficiency, 90% Google Ads proficiency
+- 5+ years of experience in SEO and digital marketing
 
 ## Portfolio
-https://safi-ullah.netlify.app/
+https://iamsafiullah.github.io/portfolio/
+## Pages
+- SEO Services in Abu Dhabi: https://iamsafiullah.github.io/portfolio/services/seo-abu-dhabi.html
+- Google Ads Management UAE: https://iamsafiullah.github.io/portfolio/services/google-ads-uae.html
+- Web Developer in Abu Dhabi: https://iamsafiullah.github.io/portfolio/services/web-developer-abu-dhabi.html
+- Technical SEO Audit UAE: https://iamsafiullah.github.io/portfolio/services/technical-seo-audit-uae.html
+- GEO and AEO (AI Search) UAE: https://iamsafiullah.github.io/portfolio/services/geo-aeo-ai-search-uae.html
+- SEO, AEO and GEO in Abu Dhabi: A Practical Guide: https://iamsafiullah.github.io/portfolio/blog/seo-aeo-geo-abu-dhabi.html
+- Google Business Profile for Abu Dhabi Businesses: Local SEO Checklist: https://iamsafiullah.github.io/portfolio/blog/google-business-profile-abu-dhabi.html
+- Google Ads vs SEO: Which Should a UAE Small Business Choose?: https://iamsafiullah.github.io/portfolio/blog/google-ads-vs-seo-small-business-uae.html

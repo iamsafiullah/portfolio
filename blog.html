@@ -3,44 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog | Safi Ullah</title>
-<meta name="description" content="SEO, AEO, GEO and digital marketing articles by Safi Ullah.">
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
-<style>
-body{margin:0;font-family:Arial,sans-serif;color:#252b38;line-height:1.7;background:#f7f8fc}
-header,main{max-width:850px;margin:auto;padding:24px}
-a{color:#536fae}
-.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;display:block;text-decoration:none;color:inherit;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.card h2{margin:0 0 6px;font-size:22px;color:#ff4c60}
-.card .date{font-size:13px;color:#667085}
-.card img{width:100%;border-radius:8px;margin-bottom:12px}
-</style>
+<title>Blog: SEO, AEO, GEO and Google Ads in Abu Dhabi | Safi Ullah</title>
+<meta name="description" content="Practical articles on SEO, AI search, local SEO and Google Ads for UAE businesses by Safi Ullah.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://iamsafiullah.github.io/portfolio/blog.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blog: SEO, AI Search and Google Ads in the UAE">
+<meta property="og:description" content="Practical articles on SEO, AI search, local SEO and Google Ads for UAE businesses by Safi Ullah.">
+<meta property="og:url" content="https://iamsafiullah.github.io/portfolio/blog.html">
+<meta property="og:image" content="https://iamsafiullah.github.io/portfolio/assets/images/safi-profile.png">
+<meta property="og:locale" content="en_AE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#111111">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Poppins:600,700|Open+Sans:400,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://iamsafiullah.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog: SEO, AI Search and Google Ads in the UAE", "item": "https://iamsafiullah.github.io/portfolio/blog.html"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BWTWHZHKK1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-BWTWHZHKK1');</script>
 </head>
 <body>
-<header><a href="index.html">&larr; Back to Portfolio</a><h1>Blog</h1></header>
-<main id="list"><p>Loading...</p></main>
-<script>
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-var list=document.getElementById('list');
-try{
-  firebase.initializeApp(window.FIREBASE_CONFIG);
-  firebase.firestore().collection('posts').orderBy('createdAt','desc').get().then(function(snap){
-    if(snap.empty){list.innerHTML='<p>No articles yet.</p>';return;}
-    var h='';
-    snap.forEach(function(doc){
-      var d=doc.data();
-      var img=d.imageData||d.imageUrl||'';
-      var href=d.slug?'blog/'+encodeURIComponent(d.slug):'article.html?id='+doc.id;
-      h+='<a class="card" href="'+href+'">';
-      if(img) h+='<img src="'+esc(img)+'" alt="'+esc(d.imageAlt||d.title)+'">';
-      h+='<h2>'+esc(d.title)+'</h2><div class="date">'+new Date(d.createdAt).toLocaleDateString()+'</div>';
-      h+='<p>'+esc(d.metaDesc||String(d.body).slice(0,160))+'</p></a>';
-    });
-    list.innerHTML=h;
-  }).catch(function(){list.innerHTML='<p>Could not load articles.</p>';});
-}catch(e){list.innerHTML='<p>Could not load articles.</p>';}
-</script>
+<header class="top"><div class="in"><a class="brand" href="https://iamsafiullah.github.io/portfolio/">Safi Ullah</a>
+<nav aria-label="Main"><a href="https://iamsafiullah.github.io/portfolio/">Home</a><a href="https://iamsafiullah.github.io/portfolio/services/seo-abu-dhabi.html">SEO</a><a href="https://iamsafiullah.github.io/portfolio/services/google-ads-uae.html">Google Ads</a><a href="https://iamsafiullah.github.io/portfolio/services/web-developer-abu-dhabi.html">Web Development</a><a href="https://iamsafiullah.github.io/portfolio/blog.html">Blog</a><a href="https://iamsafiullah.github.io/portfolio/#contact">Contact</a></nav></div></header>
+<main>
+<p class="crumbs"><a href="https://iamsafiullah.github.io/portfolio/">Home</a> / Blog: SEO, AI Search and Google Ads in the UAE</p>
+<article>
+<h1>Blog: SEO, AI Search and Google Ads in the UAE</h1>
+
+<div class="card"><h2 style="margin:0 0 6px"><a href="blog/seo-aeo-geo-abu-dhabi.html">SEO, AEO and GEO in Abu Dhabi: A Practical Guide</a></h2><p>What each one means, how they fit together, and what Abu Dhabi businesses should do first.</p></div>
+<div class="card"><h2 style="margin:0 0 6px"><a href="blog/google-business-profile-abu-dhabi.html">Google Business Profile for Abu Dhabi Businesses: Local SEO Checklist</a></h2><p>Set up and improve your Google Business Profile to get found on Google Maps.</p></div>
+<div class="card"><h2 style="margin:0 0 6px"><a href="blog/google-ads-vs-seo-small-business-uae.html">Google Ads vs SEO: Which Should a UAE Small Business Choose?</a></h2><p>Paid ads are fast. SEO compounds. How to pick, or combine both.</p></div>
+
+
+</article>
+<div class="card"><strong>Need this for your business?</strong><p>Send me your website and what you sell. I will reply with the quickest wins.</p>
+<a class="cta" href="https://wa.me/971562221544?text=Hi%20Safi%2C%20I%20need%20help%20with%20Blog:%20SEO,%20AI%20Search%20and%20Google%20Ads%20in%20the%20UAE" rel="noopener">WhatsApp me</a><a class="cta alt" href="mailto:safiorakzai007@gmail.com">Email</a></div>
+</main>
+<footer>Safi Ullah, freelance SEO and digital marketing consultant, Abu Dhabi, UAE. <a href="https://wa.me/971562221544">WhatsApp +971 56 222 1544</a> | <a href="https://iamsafiullah.github.io/portfolio/">Portfolio</a> | <a href="https://iamsafiullah.github.io/portfolio/blog.html">Blog</a></footer>
 </body>
 </html>
